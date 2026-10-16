@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel de Módulo · HNAL</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="modulo-bg">
+
+<div id="overlay-cerrado" class="overlay-cerrado d-none">
+  <i class="bi bi-lock"></i>
+  <h2>La jornada ha finalizado</h2>
+  <p class="text-white-50">Ya no se pueden atender más turnos. Puede cerrar su sesión.</p>
+  <button class="btn btn-outline-light mt-2" onclick="Modulo.cerrarSesion()">Cerrar sesión</button>
+</div>
+
+<div class="container py-4" style="max-width: 760px;">
+
+  <div id="selector-modulo" class="hnal-card text-center mb-4">
+    <h5 class="mb-1">Seleccione su módulo de atención</h5>
+    <p class="small text-muted mb-3">Un módulo solo puede estar activo en una sesión a la vez. El número de módulos disponibles lo define el supervisor desde el Panel de Admin.</p>
+    <div class="modulo-select-grid" id="opciones-modulo"></div>
+  </div>
+
+  <div id="panel-principal" class="d-none">
+    <div class="hnal-card mb-3">
+      <div class="hnal-flex-between">
+        <div>
+          <div class="fw-bold">Panel de Módulo</div>
+          <small class="text-muted">Hospital Nacional Arzobispo Loayza - HNAL</small>
+        </div>
+        <div class="text-end">
+          <span class="badge bg-secondary">Módulo: <span id="numero-modulo"></span></span>
+          <button class="btn btn-sm btn-outline-danger ms-2" onclick="Modulo.cerrarSesion()">Cerrar sesión</button>
+        </div>
+      </div>
+      <hr>
+      <div class="hnal-flex-between">
+        <div><i class="bi bi-circle-fill" id="punto-estado"></i> Estado: <strong id="texto-estado">Disponible</strong></div>
+        <small class="text-muted">Atendidos hoy: <strong id="atendidos-hoy">0</strong> | Prom: <strong id="tiempo-prom">-</strong> min</small>
+      </div>
+      <div class="mt-2">
+        <button id="btn-pausar" class="btn btn-sm btn-outline-secondary" onclick="Modulo.togglePausa()">Pausar módulo</button>
+      </div>
+    </div>
+
+    <div id="card-turno-activo" class="hnal-card mb-3">
+      <div class="small text-muted mb-2">Turno en atención</div>
+      <div id="sin-turno" class="text-center text-muted py-3">
+        <i class="bi bi-bell-slash fs-3 d-block mb-1"></i> Sin turno activo<br><small>Use el botón para llamar al siguiente</small>
+      </div>
+      <div id="con-turno" class="d-none text-center py-2">
+        <span class="badge mb-2" id="badge-tipo-turno">General</span>
+        <div class="display-6 fw-bold" id="codigo-turno-activo">G-001</div>
+        <small class="text-muted">Llamado a las <span id="hora-llamado"></span></small>
+      </div>
+    </div>
+
+    <div class="hnal-card mb-3">
+      <div class="hnal-flex-between mb-2">
+        <span class="fw-bold">Cola virtual única</span>
+        <small class="text-muted"><span id="total-en-cola">0</span> turnos en espera · bono pref. +<span id="bono-actual">0</span> min</small>
+      </div>
+      <div id="lista-cola"></div>
+      <p class="small text-muted mb-0">Urgencia = minutos esperando + bono. El turno de mayor urgencia se asigna al módulo que se libere primero.</p>
+    </div>
+
+    <div class="row g-2 mb-3">
+      <div class="col-6"><button id="btn-llamar" class="btn btn-warning w-100 fw-bold" onclick="Modulo.llamarSiguiente()"><i class="bi bi-megaphone"></i> Llamar siguiente</button></div>
+      <div class="col-6"><button id="btn-completar" class="btn btn-success w-100 fw-bold" onclick="Modulo.completarAtencion()" disabled><i class="bi bi-check2-circle"></i> Atención completada</button></div>
+    </div>
+    <div class="mb-3">
+      <button id="btn-ausente" class="btn btn-outline-secondary w-100" onclick="Modulo.marcarAusente()" disabled><i class="bi bi-person-x"></i> Marcar ausencia del usuario</button>
+    </div>
+
+    <div class="hnal-card">
+      <div class="fw-bold mb-2"><i class="bi bi-exclamation-triangle text-warning"></i> Reportar incidencia</div>
+      <select id="tipo-incidencia" class="form-select mb-2">
+        <option>Paciente no encontrado</option>
+        <option>Problema técnico</option>
+        <option>Pausa por incidente</option>
+        <option>Paciente agresivo</option>
+        <option>Error de sistema</option>
+        <option>Otro</option>
+      </select>
+      <textarea id="desc-incidencia" class="form-control mb-2" rows="2" placeholder="Descripción breve de la incidencia..."></textarea>
+      <button class="btn w-100" style="background:#c98a75;color:#fff" onclick="Modulo.reportarIncidencia()">Reportar incidencia</button>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/store.js"></script>
+<script src="../assets/js/modulo.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sala de Espera · HNAL</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="tv-bg">
+
+<div id="overlay-cerrado" class="overlay-cerrado d-none">
+  <i class="bi bi-moon-stars"></i>
+  <h2>No hay atención en este momento</h2>
+  <p class="text-white-50">La jornada de atención ha finalizado. Gracias por su visita.</p>
+</div>
+
+<div class="container-fluid py-4 px-4 d-flex flex-column justify-content-center" style="min-height: 100vh;">
+  <div class="hnal-flex-between mb-4">
+    <div>
+      <div class="fs-4 fw-bold">Hospital Nacional Arzobispo Loayza</div>
+      <small class="text-white-50">Sala de espera · Sistema de Gestión de Turnos</small>
+    </div>
+    <div class="text-end">
+      <div class="fs-3 tv-reloj" id="reloj"></div>
+      <small class="text-white-50" id="fecha"></small>
+    </div>
+  </div>
+
+  <div class="tv-llamado text-center p-4 mb-4" id="card-llamado">
+    <small class="text-uppercase fw-bold" id="llamado-tipo">Esperando turnos...</small>
+    <div class="tv-codigo" id="llamado-codigo">—</div>
+    <div id="llamado-modulo"></div>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-4">
+      <div class="hnal-card bg-transparent border border-light text-white">
+        <div><i class="bi bi-person"></i> Cola General</div>
+        <div class="display-5 fw-bold" id="total-general">0</div>
+        <small class="text-white-50">personas esperando</small>
+        <div id="lista-general" class="mt-2 small"></div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="hnal-card bg-transparent border border-light text-white">
+        <div><i class="bi bi-universal-access-circle"></i> Cola Preferencial</div>
+        <div class="display-5 fw-bold" id="total-preferencial">0</div>
+        <small class="text-white-50">personas esperando</small>
+        <div id="lista-preferencial" class="mt-2 small"></div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="hnal-card bg-transparent border border-light text-white">
+        <div><i class="bi bi-check2-circle"></i> Últimos llamados</div>
+        <div id="lista-llamados" class="mt-2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/store.js"></script>
+<script src="../assets/js/tv.js"></script>
+</body>
+</html>

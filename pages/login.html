@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iniciar sesión · HNAL</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="login-bg">
+
+<div class="hnal-center-screen">
+  <div class="login-card bg-white">
+    <div class="login-side d-flex align-items-end p-4">
+      <div class="text-white">
+        <div class="fs-3"><i class="bi bi-hospital"></i></div>
+        <div class="fw-bold">Hospital Nacional<br>Arzobispo Loayza</div>
+        <small class="text-white-50">Sistema de Gestión de Turnos</small>
+      </div>
+    </div>
+    <div class="p-4 p-md-5 d-flex flex-column justify-content-center">
+      <p class="text-uppercase text-muted small fw-bold mb-3">Account Login</p>
+      <input id="usuario" class="form-control mb-2" placeholder="User name" autocomplete="username">
+      <input id="clave" type="password" class="form-control mb-3" placeholder="Password" autocomplete="current-password">
+      <button class="btn btn-success fw-bold mb-2" onclick="Login.entrar()">SIGN IN</button>
+      <div id="error-login" class="text-danger small mb-2"></div>
+      <a href="#" class="small text-muted">Forgot User name / password?</a>
+      <hr>
+      <a href="../index.html" class="small text-muted"><i class="bi bi-arrow-left"></i> Volver al kiosko</a>
+      <div class="small text-muted mt-3">
+        Demo: <code>modulo1 / 1234</code> (personal de módulo) &middot; <code>supervisor / admin123</code> (supervisor)
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/store.js"></script>
+<script src="../assets/js/login.js"></script>
+</body>
+</html>
